@@ -1,4 +1,5 @@
-
+// Recurrence relation - 3T(n/2) + n(log(n)) + 3n/2
+// T(n) = n^1.6 ( first case of master's theorum
 
 
 #include <bits/stdc++.h>
