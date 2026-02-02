@@ -1,0 +1,30 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+int main() {
+    int n,sum=0,maxlength=0;
+    cin>>n;
+
+unordered_map<int,int> mp;
+mp[0]=-1;
+for (int i=0;i<n;i++){
+    char c;
+    cin>>c;
+   
+   
+   c = tolower(c);
+    if(c=='p'){
+        sum+=1;
+    }
+    else{sum-=1;
+}
+if(mp.find(sum)!=mp.end()){
+    maxlength=max(maxlength,i-mp[sum]);
+}
+else{
+    mp[sum]=i;
+}}
+cout<<maxlength;
+
+    return 0;
+}
