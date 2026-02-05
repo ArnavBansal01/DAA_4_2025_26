@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int K = 5;
+    vector<int> scores = {12, 26, 50, 10, 23, 6};
+
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+
+    for (int score : scores) {
+
+        if (minHeap.size() < K) {
+            minHeap.push(score);
+        }
+        else if (score > minHeap.top()) {
+            minHeap.pop();
+            minHeap.push(score);
+        }
+
+
+        if (minHeap.size() < K)
+            cout << -1 << endl;
+        else
+            cout << minHeap.top() << endl;
+    }
+
+    return 0;
+}
