@@ -1,0 +1,66 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int lower(int arr2[], int m, int k) {
+    int left = 0;
+    int right = m-1,lowerbound=m;
+
+    while (left <= right) {
+        int middle = (left+right) / 2;
+
+        
+        if (arr2[middle] >= k) {
+            right = middle - 1;
+            lowerbound = middle;
+        }
+        else {
+            left = middle + 1;
+        }
+    }
+
+    return lowerbound; 
+}
+int upper(int arr2[], int m, int k) {
+    int left = 0;
+    int right = m-1,uppers=m;
+
+    while (left <= right) {
+        int middle = (left+right) / 2;
+
+        
+        if (arr2[middle] > k) {
+            right = middle - 1;
+            uppers = middle;
+        }
+        else {
+            left = middle + 1;
+        }
+    }
+
+    return uppers; 
+}
+
+int countpairs(int arr1[],int arr2[],int m,int n,int x){
+    int count=0;
+    sort(arr1, arr1 + m);
+    for(int i=0;i<n;i++){
+        int k=x-arr2[i];
+        
+        int lowers = lower(arr1,m,k);
+        
+        int uppers = upper(arr1,m,k);
+        if(lowers<m&&arr1[lowers]==k){
+            count=count+(uppers-lowers);
+        }
+        
+    }
+    return count;
+}
+
+int main() {
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {2, 3, 4};
+    int m=sizeof(arr1)/sizeof(arr1[0]),n=sizeof(arr2)/sizeof(arr2[0]),target=5;
+    int result = countpairs(arr1, arr2, m, n, target);
+    return 0;
+}
